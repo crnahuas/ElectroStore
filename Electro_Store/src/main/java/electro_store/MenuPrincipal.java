@@ -29,7 +29,7 @@ public class MenuPrincipal {
     }
 
     public void iniciar() {
-        System.out.println("===== ElectroStore (Inventario en Consola) =====");
+        System.out.println("===== ElectroStore =====");
         while (true) {
             mostrarMenu();
             int opt = InputUtils.readMenuOption("Opción: ", 0, commands.size());
