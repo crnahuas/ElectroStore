@@ -6,7 +6,7 @@ import model.Producto;
 import utils.InputUtils;
 
 /**
- * Agrega un producto al inventario verificando unicidad del código.
+ * Agrega un producto validando unicidad de código.
  */
 public class AgregarProductoCommand implements Command {
 
@@ -23,16 +23,15 @@ public class AgregarProductoCommand implements Command {
 
     @Override
     public void execute() {
-        String codigo = InputUtils.readNonEmpty("Código único: ");
+        String codigo = InputUtils.readId("Código único: ");
         if (inventario.obtenerPorCodigo(codigo) != null) {
             System.out.println("Ya existe un producto con ese código.");
             return;
         }
-        String nombre = InputUtils.readNonEmpty("Nombre: ");
-        String desc = InputUtils.readOptional("Descripción (opcional): ");
-        double precio = InputUtils.readPositiveDouble("Precio (>0): ");
-        int cantidad = InputUtils.readNonNegativeInt("Cantidad (>=0): ");
-
+        String nombre = InputUtils.readText("Nombre: ", 100, "nombre");
+        String desc = InputUtils.readText("Descripción (máx 255, vacío permitido): ", 255, "descripción");
+        double precio = InputUtils.readPrecio("Precio (>0): ");
+        int cantidad = InputUtils.readCantidad("Cantidad (>=0): ");
         try {
             Producto p = new Producto(codigo, nombre, desc, precio, cantidad);
             boolean ok = inventario.agregarProducto(p);

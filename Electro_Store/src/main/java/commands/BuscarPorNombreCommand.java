@@ -24,12 +24,12 @@ public class BuscarPorNombreCommand implements Command {
 
     @Override
     public void execute() {
-        String term = InputUtils.readNonEmpty("Nombre (o parte): ");
-        List<Producto> list = inventario.buscarPorNombre(term);
-        if (list.isEmpty()) {
+        String termino = InputUtils.readText("Nombre a buscar: ", 100, "nombre");
+        List<Producto> resultados = inventario.buscarPorNombre(termino);
+        if (resultados.isEmpty()) {
             System.out.println("Sin resultados.");
         } else {
-            list.forEach(System.out::println);
+            resultados.forEach(System.out::println);
         }
     }
 }

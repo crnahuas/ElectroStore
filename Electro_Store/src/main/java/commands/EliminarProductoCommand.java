@@ -5,7 +5,7 @@ import model.Inventario;
 import utils.InputUtils;
 
 /**
- * Elimina un producto por su código si existe.
+ * Elimina un producto por código si existe.
  */
 public class EliminarProductoCommand implements Command {
 
@@ -22,7 +22,7 @@ public class EliminarProductoCommand implements Command {
 
     @Override
     public void execute() {
-        String codigo = InputUtils.readNonEmpty("Código a eliminar: ");
+        String codigo = InputUtils.readId("Código a eliminar: ");
         boolean removed = inventario.eliminarProducto(codigo);
         System.out.println(removed ? "Producto eliminado." : "No existe un producto con ese código.");
     }

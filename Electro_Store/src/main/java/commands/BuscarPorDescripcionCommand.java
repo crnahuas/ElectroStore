@@ -24,12 +24,12 @@ public class BuscarPorDescripcionCommand implements Command {
 
     @Override
     public void execute() {
-        String term = InputUtils.readNonEmpty("Descripción (o parte): ");
-        List<Producto> list = inventario.buscarPorDescripcion(term);
-        if (list.isEmpty()) {
+        String termino = InputUtils.readText("Descripción a buscar: ", 255, "descripción");
+        List<Producto> resultados = inventario.buscarPorDescripcion(termino);
+        if (resultados.isEmpty()) {
             System.out.println("Sin resultados.");
         } else {
-            list.forEach(System.out::println);
+            resultados.forEach(System.out::println);
         }
     }
 }
